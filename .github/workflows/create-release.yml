@@ -10,11 +10,17 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Create dist directory
+        run: "mkdir -p ~/dist"
+      - name: Create cache for dist directory
         uses: actions/cache@v2
         with:
           path: |
             ~/dist
           key: ${{ github.run_id }}-dist
+      - name: List directories
+        run: "ls ~"
+      - name: Create file in dist directory
+        run: "touch ~/dist/README.txt"
     
   compile-pico-code:
     runs-on: ubuntu-latest
@@ -28,8 +34,8 @@ jobs:
           path: |
             ~/dist
           key: ${{ github.run_id }}-dist      
-      - name: List files in home directory in runner
-        run: "ls ~"
+      - name: List files in dist directory
+        run: "ls ~/dist"
       - name: List files in the repository
         run: |
           ls ${{ github.workspace }}/code/pico/demo-multipanel
