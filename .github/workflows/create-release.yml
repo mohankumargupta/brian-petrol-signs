@@ -67,6 +67,8 @@ jobs:
           fqbn: esp8266:esp8266:d1_mini
           sketch-paths: |
             - ${{ github.workspace }}/code/d1mini
+          cli-compile-flags: |
+            - --export-binaries            
           platforms: |
             - name: esp8266:esp8266
               source-url: https://arduino.esp8266.com/stable/package_esp8266com_index.json
@@ -78,4 +80,6 @@ jobs:
             - name: ArduinoJson
               source-url: https://github.com/bblanchon/ArduinoJson/archive/refs/heads/6.x.zip
           verbose: true
+      - name: List files in d1mini source directory
+        run: "ls  ${{ github.workspace }}/code/d1mini"          
 
