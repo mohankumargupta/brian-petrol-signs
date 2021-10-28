@@ -20,4 +20,6 @@ jobs:
         uses: arduino/compile-sketches@v1.0.0
         with:
           fbqn: arduino:mbed_rp2040:pico
+          sketch-paths: |
+            - ${{ github.workspace }}/code/pico/demo-multipanel
           verbose: true
