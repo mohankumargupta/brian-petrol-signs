@@ -26,7 +26,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Check out repository code
-        uses: actions/checkout@v2        
+        uses: actions/checkout@v2  
+      - name: List Contents
+        run: "ls"
       - name: Compile D1 mini sketch
         uses: arduino/compile-sketches@v1.0.0
         with:
