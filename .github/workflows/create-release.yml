@@ -111,7 +111,7 @@ jobs:
         uses: actions/cache@v2
         with:
           path: |
-            ~/dist
-          key: ${{ github.run_id }}-dist     
+            ~/dist2
+          key: ${{ github.run_id }}-dist2     
       - name: List files in dist directory
-        run: "ls ~/dist"
+        run: "ls ~/dist2"
