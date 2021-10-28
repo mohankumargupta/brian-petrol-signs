@@ -89,8 +89,6 @@ jobs:
           path: |
             ~/pico
           key: ${{ github.run_id }}-pico     
-      - name: List files in dist directory
-        run: "ls ~/dist2"
       - name: Reuse d1mini directory
         uses: actions/cache@v2
         with:
