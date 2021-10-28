@@ -5,35 +5,14 @@ on:
       releasename:
         description: Release Version
         required: true
-jobs:
-  prelaunch:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Create dist directory
-        run: "mkdir -p ~/dist"
-      - name: Create cache for dist directory
-        uses: actions/cache@v2
-        with:
-          path: |
-            ~/dist
-          key: ${{ github.run_id }}-dist
-      - name: List directories
-        run: "ls ~"
-      - name: Create file in dist directory
-        run: "touch ~/dist/README.txt"
-    
+jobs:    
   compile-pico-code:
     runs-on: ubuntu-latest
-    needs: prelaunch
     steps:
       - name: Check out repository code
         uses: actions/checkout@v2
-      - name: Reuse dist directory
-        uses: actions/cache@v2
-        with:
-          path: |
-            ~/dist
-          key: ${{ github.run_id }}-dist      
+      - name: Create output directory for pico build
+        run: "mkdir -p ~/pico"   
       - name: List files in the repository
         run: |
           ls ${{ github.workspace }}/code/pico/demo-multipanel
@@ -49,32 +28,21 @@ jobs:
       - name: List files in pico source directory
         run: "ls  ${{ github.workspace }}/code/pico/demo-multipanel"
       - name: Copy final uf2 to dist directory
-        run: "cp ${{ github.workspace }}/code/pico/demo-multipanel/demo-multipanel.uf2 ~/dist"
-      - name: List files in dist directory
-        run: "ls ~/dist"
-      - name: Create dist2 directory
-        run: "mkdir -p ~/dist2"
-      - name: Copy files to dist2
-        run: "cp ~/dist/* dist2"
-      - name: Create cache for dist directory
-        uses: actions/cache@v2
-        with:
-          path: |
-            ~/dist2
-          key: ${{ github.run_id }}-dist2        
-          
-  compile-d1mini-code:
-    runs-on: ubuntu-latest
-    needs: compile-pico-code
-    steps:
-      - name: Check out repository code
-        uses: actions/checkout@v2  
+        run: "cp ${{ github.workspace }}/code/pico/demo-multipanel/demo-multipanel.uf2 ~/pico"
+      - name: List files in pico directory
+        run: "ls ~/pico"
       - name: Reuse dist directory
         uses: actions/cache@v2
         with:
           path: |
-            ~/dist2
-          key: ${{ github.run_id }}-dist2         
+            ~/
+          key: ${{ github.run_id }}-pico        
+                 
+  compile-d1mini-code:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository code
+        uses: actions/checkout@v2          
       - name: List Contents
         run: "ls ${{ github.workspace }}/code/d1mini"
       - name: Compile D1 mini sketch
@@ -99,19 +67,37 @@ jobs:
       - name: List files in d1mini source directory
         run: "ls  ${{ github.workspace }}/code/d1mini"    
       - name: Copy final binary to dist directory
-        run: "cp ${{ github.workspace }}/code/d1mini/d1mini.bin ~/dist2"
+        run: "cp ${{ github.workspace }}/code/d1mini/d1mini.bin ~/d1mini"
       - name: List files in dist2 directory
-        run: "ls ~/dist2"
-
-  prepare-release:
-    runs-on: ubuntu-latest
-    needs: compile-d1mini-code
-    steps:
+        run: "ls ~/d1mini"
       - name: Reuse dist directory
         uses: actions/cache@v2
         with:
           path: |
-            ~/dist2
-          key: ${{ github.run_id }}-dist2     
+            ~/d1mini
+          key: ${{ github.run_id }}-d1mini         
+
+  prepare-release:
+    runs-on: ubuntu-latest
+    needs: 
+      - compile-pico-code
+      - compile-d1mini-code
+    steps:
+      - name: Reuse pico directory
+        uses: actions/cache@v2
+        with:
+          path: |
+            ~/pico
+          key: ${{ github.run_id }}-pico     
       - name: List files in dist directory
         run: "ls ~/dist2"
+      - name: Reuse d1mini directory
+        uses: actions/cache@v2
+        with:
+          path: |
+            ~/d1mini
+          key: ${{ github.run_id }}-d1mini     
+      - name: List files in pico directory
+        run: "ls ~/pico"
+      - name: List files in d1mini directory
+        run: "ls ~/d1mini"        
