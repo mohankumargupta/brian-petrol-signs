@@ -55,7 +55,7 @@ jobs:
           
   compile-d1mini-code:
     runs-on: ubuntu-latest
-    needs: prelaunch
+    needs: compile-pico-code
     steps:
       - name: Check out repository code
         uses: actions/checkout@v2  
@@ -93,9 +93,7 @@ jobs:
 
   prepare-release:
     runs-on: ubuntu-latest
-    needs: 
-     - compile-pico-code
-     - compile-d1mini-code
+    needs: compile-d1mini-code
     steps:
       - name: Reuse dist directory
         uses: actions/cache@v2
