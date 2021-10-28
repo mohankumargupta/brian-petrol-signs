@@ -11,15 +11,23 @@ jobs:
     steps:
       - name: Check out repository code
         uses: actions/checkout@v2
-      - run: echo "💡 The ${{ github.repository }} repository has been cloned to the runner."
-      - run: echo "🖥️ The workflow is now ready to test your code on the runner."
       - name: List files in the repository
         run: |
           ls ${{ github.workspace }}/code/pico/demo-multipanel
-      - name: Compile Arduino Sketches
+      - name: Compile Pico Sketch
         uses: arduino/compile-sketches@v1.0.0
         with:
           fqbn: arduino:mbed_rp2040:pico
           sketch-paths: |
             - ${{ github.workspace }}/code/pico/demo-multipanel
+          verbose: true
+      - name: Compile D1 mini sketch
+        uses: arduino/compile-sketches@v1.0.0
+        with:
+          fqbn: esp8266:esp8266:d1_mini
+          sketch-paths: |
+            - ${{ github.workspace }}/code/pico/d1mini
+          platforms: |
+            - name: esp8266:esp8266
+              source-url: https://arduino.esp8266.com/stable/package_esp8266com_index.json
           verbose: true
