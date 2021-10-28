@@ -38,5 +38,10 @@ jobs:
           platforms: |
             - name: esp8266:esp8266
               source-url: https://arduino.esp8266.com/stable/package_esp8266com_index.json
+          libraries: |
+            - name: ESP AsyncTCP
+              source-url: https://github.com/me-no-dev/ESPAsyncTCP
+            - name: ESP Async WebServer
+              source-url: https://github.com/me-no-dev/ESPAsyncWebServer              
           verbose: true
 
