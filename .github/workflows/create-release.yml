@@ -95,7 +95,6 @@ jobs:
           path: |
             ~/d1mini
           key: ${{ github.run_id }}-d1mini     
-      - name: List files in pico directory
-        run: "ls ~/pico"
-      - name: List files in d1mini directory
-        run: "ls ~/d1mini"        
+      - name: List files in runner directory
+        run: "ls ~/"
+      
