@@ -12,10 +12,10 @@ jobs:
           path: |
             ~/dist
           key: ${{ github.run_id }}-dist
-       - name: List directories
-         run: "ls ~"
-       - name: Create file in dist directory
-         run: "touch ~/dist/boo.txt"
+      - name: List directories
+        run: "ls ~"
+      - name: Create file in dist directory
+        run: "touch ~/dist/boo.txt"
        
     
   compile-pico-code:
