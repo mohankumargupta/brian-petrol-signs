@@ -21,6 +21,9 @@ jobs:
           sketch-paths: |
             - ${{ github.workspace }}/code/pico/demo-multipanel
           verbose: true
+      - name: Remove arduino-cli
+        run: "rm -f $(which arduino-cli)"
+        
       - name: Compile D1 mini sketch
         uses: arduino/compile-sketches@v1.0.0
         with:
