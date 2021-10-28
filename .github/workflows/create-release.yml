@@ -6,6 +6,12 @@ on:
         description: Release Version
         required: true
 jobs:
+  prelaunch:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Create temp directory
+        run: "if [ -f ~/dist ]; then rm -rf ~/dist else mkdir -p ~/dist && ls ~ fi  "
+    
   compile-pico-code:
     runs-on: ubuntu-latest
     steps:
