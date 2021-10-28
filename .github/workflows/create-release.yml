@@ -1,9 +1,9 @@
 name: Create Release
-on: workflow_dispatch
-  inputs:
-    name:
-      description: Release Version
-      required: true
+  on: workflow_dispatch
+    inputs:
+      name:
+        description: Release Version
+        required: true
 jobs:
   Explore-GitHub-Actions:
     runs-on: ubuntu-latest
