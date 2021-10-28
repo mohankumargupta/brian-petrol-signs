@@ -59,6 +59,12 @@ jobs:
     steps:
       - name: Check out repository code
         uses: actions/checkout@v2  
+      - name: Reuse dist directory
+        uses: actions/cache@v2
+        with:
+          path: |
+            ~/dist
+          key: ${{ github.run_id }}-dist         
       - name: List Contents
         run: "ls ${{ github.workspace }}/code/d1mini"
       - name: Compile D1 mini sketch
@@ -91,5 +97,11 @@ jobs:
      - compile-pico-code
      - compile-d1mini-code
     steps:
+      - name: Reuse dist directory
+        uses: actions/cache@v2
+        with:
+          path: |
+            ~/dist
+          key: ${{ github.run_id }}-dist     
       - name: List files in dist directory
         run: "ls ~/dist"
