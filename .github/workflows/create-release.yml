@@ -9,8 +9,12 @@ jobs:
   prelaunch:
     runs-on: ubuntu-latest
     steps:
-      - name: Create temp directory
-        run: "if [ -d ~/dist ];  then rm -rf ~/dist; fi ;mkdir -p ~/dist; ls ~"
+      - name: Create dist directory
+        uses: actions/cache@v2
+        with:
+          path: |
+            ~/dist
+          key: ${{ github.run_id }}-dist
     
   compile-pico-code:
     runs-on: ubuntu-latest
@@ -18,6 +22,12 @@ jobs:
     steps:
       - name: Check out repository code
         uses: actions/checkout@v2
+      - name: Reuse dist directory
+        uses: actions/cache@v2
+        with:
+          path: |
+            ~/dist
+          key: ${{ github.run_id }}-dist      
       - name: List files in home directory in runner
         run: "ls ~"
       - name: List files in the repository
