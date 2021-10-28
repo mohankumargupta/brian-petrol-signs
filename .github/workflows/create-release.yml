@@ -52,6 +52,16 @@ jobs:
         run: "cp ${{ github.workspace }}/code/pico/demo-multipanel/demo-multipanel.uf2 ~/dist"
       - name: List files in dist directory
         run: "ls ~/dist"
+      - name: Create dist2 directory
+        run: "mkdir -p ~/dist2"
+      - name: Copy files to dist2
+        run: "cp ~/dist/* dist2"
+      - name: Create cache for dist directory
+        uses: actions/cache@v2
+        with:
+          path: |
+            ~/dist2
+          key: ${{ github.run_id }}-dist2        
           
   compile-d1mini-code:
     runs-on: ubuntu-latest
@@ -63,8 +73,8 @@ jobs:
         uses: actions/cache@v2
         with:
           path: |
-            ~/dist
-          key: ${{ github.run_id }}-dist         
+            ~/dist2
+          key: ${{ github.run_id }}-dist2         
       - name: List Contents
         run: "ls ${{ github.workspace }}/code/d1mini"
       - name: Compile D1 mini sketch
@@ -89,7 +99,9 @@ jobs:
       - name: List files in d1mini source directory
         run: "ls  ${{ github.workspace }}/code/d1mini"    
       - name: Copy final binary to dist directory
-        run: "cp ${{ github.workspace }}/code/d1mini/d1mini.bin ~/dist"      
+        run: "cp ${{ github.workspace }}/code/d1mini/d1mini.bin ~/dist2"
+      - name: List files in dist2 directory
+        run: "ls ~/dist2"
 
   prepare-release:
     runs-on: ubuntu-latest
