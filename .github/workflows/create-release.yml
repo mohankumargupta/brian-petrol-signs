@@ -44,8 +44,10 @@ jobs:
           sketch-paths: |
             - ${{ github.workspace }}/code/pico/demo-multipanel
           cli-compile-flags: |
-            - --output-dir ~/dist
+            - --export-binaries
           verbose: true
+      - name: List files in pico source directory
+        run: "ls  ${{ github.workspace }}/code/pico/demo-multipanel"
       - name: List files in dist directory
         run: "ls ~/dist"
           
