@@ -6,7 +6,7 @@ on:
         description: Release Version
         required: true
 jobs:
-  compile-code:
+  compile-pico-code:
     runs-on: ubuntu-latest
     steps:
       - name: Check out repository code
@@ -21,9 +21,12 @@ jobs:
           sketch-paths: |
             - ${{ github.workspace }}/code/pico/demo-multipanel
           verbose: true
-      - name: Remove arduino-cli
-        run: "rm -vf  /home/runner/bin/arduino-cli"
-        
+          
+  compile-d1mini-code:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository code
+        uses: actions/checkout@v2        
       - name: Compile D1 mini sketch
         uses: arduino/compile-sketches@v1.0.0
         with:
@@ -34,3 +37,4 @@ jobs:
             - name: esp8266:esp8266
               source-url: https://arduino.esp8266.com/stable/package_esp8266com_index.json
           verbose: true
+
