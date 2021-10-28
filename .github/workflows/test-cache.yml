@@ -33,7 +33,7 @@ jobs:
             ~/dist
           key: ${{ github.run_id }}-dist      
       - name: List files in home directory in runner
-        run: "ls ~"
+        run: "ls ~/dist"
 
           
 
