@@ -7,6 +7,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Create dist directory
+        run: "mkdir -p ~/dist"
+      - name: Create cache for dist directory
         uses: actions/cache@v2
         with:
           path: |
