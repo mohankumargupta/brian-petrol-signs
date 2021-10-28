@@ -81,5 +81,15 @@ jobs:
               source-url: https://github.com/bblanchon/ArduinoJson/archive/refs/heads/6.x.zip
           verbose: true
       - name: List files in d1mini source directory
-        run: "ls  ${{ github.workspace }}/code/d1mini"          
+        run: "ls  ${{ github.workspace }}/code/d1mini"    
+      - name: Copy final binary to dist directory
+        run: "cp ${{ github.workspace }}/code/d1mini/d1mini.bin ~/dist"      
 
+  prepare-release:
+    runs-on: ubuntu-latest
+    needs: 
+     - compile-pico-code
+     - compile-d1mini-code
+    steps:
+      - name: List files in dist directory
+        run: "ls ~/dist"
