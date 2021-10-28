@@ -34,8 +34,6 @@ jobs:
           path: |
             ~/dist
           key: ${{ github.run_id }}-dist      
-      - name: List files in dist directory
-        run: "ls ~/dist"
       - name: List files in the repository
         run: |
           ls ${{ github.workspace }}/code/pico/demo-multipanel
@@ -45,7 +43,11 @@ jobs:
           fqbn: arduino:mbed_rp2040:pico
           sketch-paths: |
             - ${{ github.workspace }}/code/pico/demo-multipanel
+          cli-compile-flags: |
+            - --output ~/dist
           verbose: true
+      - name: List files in dist directory
+        run: "ls ~/dist"
           
   compile-d1mini-code:
     runs-on: ubuntu-latest
