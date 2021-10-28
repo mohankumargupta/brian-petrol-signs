@@ -10,10 +10,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Create temp directory
-        run: "if [ -f ~/dist ]; then rm -rf ~/dist else mkdir -p ~/dist && ls ~ fi  "
+        run: "if [ -d ~/dist ];  then rm -rf ~/dist; fi ;mkdir -p ~/dist; ls ~"
     
   compile-pico-code:
     runs-on: ubuntu-latest
+    needs: prelaunch
     steps:
       - name: Check out repository code
         uses: actions/checkout@v2
@@ -30,6 +31,7 @@ jobs:
           
   compile-d1mini-code:
     runs-on: ubuntu-latest
+    needs: prelaunch
     steps:
       - name: Check out repository code
         uses: actions/checkout@v2  
