@@ -41,9 +41,9 @@ jobs:
       - name: Use cmake
         run: cmake --version
       - name: Install elf2uf2
-        run: "git clone https://github.com/raspberrypi/pico-sdk $HOME/pico-sdk; cd $HOME/pico-sdk/tools/elf2uf2; mkdir build; cd build; cmake ..;make; ./elf2uf2 -h"
-      - name: Copy final uf2 to dist directory
-        run: "cp ${{ github.workspace }}/code/pico/demo-multipanel/demo-multipanel.uf2 ~/Release"       
+        run: "git clone https://github.com/raspberrypi/pico-sdk $HOME/pico-sdk; cd $HOME/pico-sdk/tools/elf2uf2; mkdir build; cd build; cmake ..;make; ./elf2uf2 -v ~/pico/demo-multipanel.elf ~/pico/demo-multipanel.uf2 "
+      - name: list file listing in Release directory
+        run: "ls -R ~/Release"       
       - name: List Contents
         run: "ls ${{ github.workspace }}/code/d1mini"        
       - name: Compile D1 mini sketch
