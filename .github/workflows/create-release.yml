@@ -32,6 +32,10 @@ jobs:
         run: "ls -R ~/pico"
       - name: copy binary file to Release directory
         run: "cp ~/pico/*.elf ~/Release"
+      - name: list file listing in Release directory
+        run: "ls ~/Release"
+      - name: Install elf2uf2
+        run: "git clone https://github.com/raspberrypi/pico-sdk /home/runner/pico-sdk; cd /home/runner/pico-sdk; ls /home/runner/pico-sdk"
       - name: Copy final uf2 to dist directory
         run: "cp ${{ github.workspace }}/code/pico/demo-multipanel/demo-multipanel.uf2 ~/Release"       
       - name: List Contents
