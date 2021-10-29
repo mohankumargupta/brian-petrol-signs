@@ -28,6 +28,8 @@ jobs:
           verbose: true
       - name: List files in pico source directory
         run: "ls  ${{ github.workspace }}/code/pico/demo-multipanel"
+      - name: list file listing in Release directory
+        run: "ls -R ~/Release"
       - name: Copy final uf2 to dist directory
         run: "cp ${{ github.workspace }}/code/pico/demo-multipanel/demo-multipanel.uf2 ~/Release"       
       - name: List Contents
