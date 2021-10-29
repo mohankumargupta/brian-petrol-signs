@@ -9,6 +9,8 @@ jobs:
   compile-code:
     runs-on: ubuntu-latest
     steps:
+      - name: where is home
+        run: "echo ${{HOME}}"
       - name: Check out repository code
         uses: actions/checkout@v2
       - name: Create release directory
