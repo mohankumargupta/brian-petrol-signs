@@ -23,6 +23,8 @@ jobs:
           sketch-paths: |
             - ${{ github.workspace }}/code/pico/demo-multipanel
           cli-compile-flags: |
+            - --build-path
+            - "~/Release"
             - --export-binaries
           verbose: true
       - name: List files in pico source directory
