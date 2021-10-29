@@ -25,7 +25,6 @@ jobs:
           cli-compile-flags: |
             - --build-path
             - "~/Release"
-            - --export-binaries
           verbose: true
       - name: List files in pico source directory
         run: "ls  ${{ github.workspace }}/code/pico/demo-multipanel"
