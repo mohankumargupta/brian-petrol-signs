@@ -9,8 +9,6 @@ jobs:
   compile-code:
     runs-on: ubuntu-latest
     steps:
-      - name: where is home
-        run: "echo $HOME"
       - name: Check out repository code
         uses: actions/checkout@v2
       - name: Create release directory
@@ -26,7 +24,7 @@ jobs:
             - ${{ github.workspace }}/code/pico/demo-multipanel
           cli-compile-flags: |
             - --build-path
-            - "~/Release"
+            - "${HOME}/Release"
           verbose: true
       - name: List files in pico source directory
         run: "ls  ${{ github.workspace }}/code/pico/demo-multipanel"
