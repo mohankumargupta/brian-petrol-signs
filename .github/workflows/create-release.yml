@@ -35,7 +35,7 @@ jobs:
       - name: list file listing in Release directory
         run: "ls ~/Release"
       - name: Install elf2uf2
-        run: "git clone https://github.com/raspberrypi/pico-sdk /home/runner/pico-sdk; cd /home/runner/pico-sdk; ls /home/runner/pico-sdk"
+        run: "git clone https://github.com/raspberrypi/pico-sdk $HOME/pico-sdk; cd $HOME/pico-sdk/tools/elf2uf2; mkdir build; cd build; cmake..;make; ./elf2uf2 -h"
       - name: Copy final uf2 to dist directory
         run: "cp ${{ github.workspace }}/code/pico/demo-multipanel/demo-multipanel.uf2 ~/Release"       
       - name: List Contents
