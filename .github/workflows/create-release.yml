@@ -6,14 +6,14 @@ on:
         description: Release Version
         required: true
 jobs:    
-  compile-pico-code:
+  compile-code:
     runs-on: ubuntu-latest
     steps:
       - name: Check out repository code
         uses: actions/checkout@v2
-      - name: Create output directory for pico build
-        run: "mkdir -p ~/pico"   
-      - name: List files in the repository
+      - name: Create release directory
+        run: "mkdir -p ~/Release"   
+      - name: List pico source files
         run: |
           ls ${{ github.workspace }}/code/pico/demo-multipanel
       - name: Compile Pico Sketch
@@ -28,30 +28,11 @@ jobs:
       - name: List files in pico source directory
         run: "ls  ${{ github.workspace }}/code/pico/demo-multipanel"
       - name: Copy final uf2 to dist directory
-        run: "cp ${{ github.workspace }}/code/pico/demo-multipanel/demo-multipanel.uf2 ~/pico"
+        run: "cp ${{ github.workspace }}/code/pico/demo-multipanel/demo-multipanel.uf2 ~/Release"
       - name: List files in pico directory
-        run: "ls ~/pico"
-      - name: Reuse dist directory
-        uses: actions/cache@v2
-        with:
-          path: |
-            ~/
-          key: ${{ github.run_id }}-pico        
-                 
-  compile-d1mini-code:
-    runs-on: ubuntu-latest
-    needs: compile-pico-code
-    steps:
-      - name: Check out repository code
-        uses: actions/checkout@v2          
+        run: "ls ~/pico"        
       - name: List Contents
-        run: "ls ${{ github.workspace }}/code/d1mini"
-      - name: Reuse dist directory
-        uses: actions/cache@v2
-        with:
-          path: |
-            ~/
-          key: ${{ github.run_id }}-pico          
+        run: "ls ${{ github.workspace }}/code/d1mini"        
       - name: Compile D1 mini sketch
         uses: arduino/compile-sketches@v1.0.0
         with:
@@ -73,31 +54,12 @@ jobs:
           verbose: true
       - name: List files in d1mini source directory
         run: "ls  ${{ github.workspace }}/code/d1mini"    
-      - name: Copy final binary to dist directory
-        run: "cp ${{ github.workspace }}/code/d1mini/d1mini.bin ~/d1mini"
-      - name: List files in dist2 directory
-        run: "ls ~/d1mini"
-      - name: create Release directory
-        run: "mkdir -p ~/Release"
-      - name: Copy d1 mini and pico binary files to Release directory
-        run: "cp ~/pico/* ~/d1mini/* ~/Release"
-      - name: Create cache for Release directory
-        uses: actions/cache@v2
-        with:
-          path: |
-            ~/Release
-          key: ${{ github.run_id }}-release         
-
-  prepare-release:
-    runs-on: ubuntu-latest
-    needs: compile-d1mini-code
-    steps:
-      - name: Reuse Release directory
-        uses: actions/cache@v2
-        with:
-          path: |
-            ~/Release
-          key: ${{ github.run_id }}-release     
-      - name: List files in Release directory
+      - name: Copy final binary to release directory
+        run: "cp ${{ github.workspace }}/code/d1mini/d1mini.bin ~/Release"
+      - name: list file listing in Release directory
         run: "ls -R ~/Release"
+        
+      
+
+
       
