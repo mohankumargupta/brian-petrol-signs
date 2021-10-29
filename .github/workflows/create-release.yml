@@ -24,7 +24,7 @@ jobs:
             - ${{ github.workspace }}/code/pico/demo-multipanel
           cli-compile-flags: |
             - --build-path
-            - "$HOME/Release"
+            - /home/runner/Release
           verbose: true
       - name: List files in pico source directory
         run: "ls  ${{ github.workspace }}/code/pico/demo-multipanel"
