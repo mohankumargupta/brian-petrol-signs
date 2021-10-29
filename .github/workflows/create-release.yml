@@ -28,9 +28,7 @@ jobs:
       - name: List files in pico source directory
         run: "ls  ${{ github.workspace }}/code/pico/demo-multipanel"
       - name: Copy final uf2 to dist directory
-        run: "cp ${{ github.workspace }}/code/pico/demo-multipanel/demo-multipanel.uf2 ~/Release"
-      - name: List files in pico directory
-        run: "ls ~/pico"        
+        run: "cp ${{ github.workspace }}/code/pico/demo-multipanel/demo-multipanel.uf2 ~/Release"       
       - name: List Contents
         run: "ls ${{ github.workspace }}/code/d1mini"        
       - name: Compile D1 mini sketch
