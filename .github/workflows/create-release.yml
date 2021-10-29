@@ -12,7 +12,7 @@ jobs:
       - name: Check out repository code
         uses: actions/checkout@v2
       - name: Create release directory
-        run: "mkdir -p ~/Release"   
+        run: "mkdir -p ~/Release ~/d1mini ~/pico"   
       - name: List pico source files
         run: |
           ls ${{ github.workspace }}/code/pico/demo-multipanel
@@ -24,12 +24,14 @@ jobs:
             - ${{ github.workspace }}/code/pico/demo-multipanel
           cli-compile-flags: |
             - --build-path
-            - /home/runner/Release
+            - /home/runner/pico
           verbose: true
       - name: List files in pico source directory
         run: "ls  ${{ github.workspace }}/code/pico/demo-multipanel"
-      - name: list file listing in Release directory
-        run: "ls -R ~/Release"
+      - name: list file listing in pico directory
+        run: "ls -R ~/pico"
+      - name: copy binary file to Release directory
+        run: "cp ~/pico/*.elf ~/Release"
       - name: Copy final uf2 to dist directory
         run: "cp ${{ github.workspace }}/code/pico/demo-multipanel/demo-multipanel.uf2 ~/Release"       
       - name: List Contents
