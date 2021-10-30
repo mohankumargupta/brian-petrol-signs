@@ -104,6 +104,8 @@ jobs:
       - compile-pico-code
       - compile-d1mini-code
     steps:
+      - name: Check out repository code
+        uses: actions/checkout@v2    
       - name: Download pico binary
         uses: actions/download-artifact@v2
         with:
@@ -116,8 +118,9 @@ jobs:
           name: d1mini-binary
           path: ~/Release/d1mini.bin
 
+      - name: zip source code
+        run: "zip -rv ~/Release/source.zip ${{github.workspace}}/code" 
+
       - name: Display structure of downloaded files
         run: "ls ~/Release"
 
-
-      
