@@ -125,11 +125,18 @@ jobs:
           recursive: true
           dest: release.zip
 
+      - name: List files in zip
+        run: "unzip -l release.zip"
+
+      - name: List files in workspace
+        run: "ls ${{ github.workspace }}"
+        
+
       - name: Copy to right dir
         run: "cp ${{ github.workspace }}/release.zip ~/Release"
 
       - name: Display structure of downloaded files
-        run: "ls ~/Release"
+        run: "ls -R ~/Release"
         
       - name: Create Release
         uses: ncipollo/release-action@v1
