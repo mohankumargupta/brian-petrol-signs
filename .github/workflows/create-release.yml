@@ -123,4 +123,13 @@ jobs:
 
       - name: Display structure of downloaded files
         run: "ls ~/Release"
+        
+      - name: Create Release
+        uses: ncipollo/release-action@v1
+        with:
+          artifacts: "~/Release/*"
+          body: "Exciting Release"
+          tag: ${{github.event.inputs.releasename}}
+          commit: "main"
+          token: ${{ secrets.GITHUB_TOKEN }}
 
