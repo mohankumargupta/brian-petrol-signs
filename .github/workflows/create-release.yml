@@ -119,7 +119,7 @@ jobs:
           path: ~/Release/d1mini.bin
 
       - name: zip source code
-        run: "zip -rv ~/Release/source.zip ${{github.workspace}}/code" 
+        run: "cd ${{github.workspace}}/code; zip -rv ~/Release/source.zip ." 
 
       - name: Display structure of downloaded files
         run: "ls ~/Release"
@@ -127,7 +127,7 @@ jobs:
       - name: Create Release
         uses: ncipollo/release-action@v1
         with:
-          artifacts: "~/Release/*"
+          artifacts: "~/Release/*.bin,~/Release/*.uf2,~/Release/*.zip"
           body: "Exciting Release"
           tag: ${{github.event.inputs.releasename}}
           commit: "main"
