@@ -40,7 +40,8 @@ jobs:
         run: "git clone https://github.com/raspberrypi/pico-sdk $HOME/pico-sdk; cd $HOME/pico-sdk/tools/elf2uf2; mkdir build; cd build; cmake ..;make; ./elf2uf2 -v ~/pico/demo-multipanel.ino.elf ~/pico/pico.uf2 "
       - name: list file listing in Release directory
         run: "ls -R ~/pico"
-      - uses: actions/upload-artifact@v2
+      - name: Upload pico binary as workflow artifact
+        uses: actions/upload-artifact@v2
         with:
           name: pico-binary
           path: ~/pico/pico.uf2
