@@ -141,7 +141,7 @@ jobs:
       - name: Create Release
         uses: ncipollo/release-action@v1
         with:
-          artifacts: "~/Release/d1mini.bin,~/Release/pico.uf2,~/Release/release.zip"
+          artifacts: "~/Release/d1mini.bin/d1mini.bin,~/Release/pico.uf2/pico.uf2,~/Release/release.zip"
           body: "Exciting Release"
           tag: ${{github.event.inputs.releasename}}
           commit: "main"
