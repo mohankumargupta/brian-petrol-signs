@@ -99,7 +99,18 @@ jobs:
           path: ~/d1mini/d1mini.bin          
           retention-days: 1        
         
-      
+  prepare-release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download artifacts
+        uses: actions/download-artifact@v2
+        with:
+          name: pico-binary
+          path: ~/Release/pico.uf2
+          
+      - name: Display structure of downloaded files
+        run: ls -R
+        working-directory: ~/Release
 
 
       
