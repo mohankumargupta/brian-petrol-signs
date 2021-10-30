@@ -111,8 +111,7 @@ jobs:
           path: ~/Release/pico.uf2
           
       - name: Display structure of downloaded files
-        run: ls -R
-        working-directory: ~/Release
+        run: ls ~/Release
 
 
       
