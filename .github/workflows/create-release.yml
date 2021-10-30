@@ -81,7 +81,7 @@ jobs:
       - name: Run mklittlefs command
         run: "./mklittlefs/mklittlefs -c ${{github.workspace}}/code/d1mini/data -p 256 -b 8192 -s 2072576 ~/d1mini/d1mini-littlefs.bin"
       - name: merge binaries
-        run: "python -m esptool --chip esp8266 merge_bin -o ~/d1mini/d1mini.bin --flash_mode dio --flash_size 4MB 0x00000 ~/pico/d1mini.ino.bin 0x200000 ~/pico/d1mini-littlefs.bin"
+        run: "python -m esptool --chip esp8266 merge_bin -o ~/d1mini/d1mini.bin --flash_mode dio --flash_size 4MB 0x00000 ~/d1mini/d1mini.ino.bin 0x200000 ~/d1mini/d1mini-littlefs.bin"
       - name: List files in d1mini source directory
         run: "ls  ${{ github.workspace }}/code/d1mini"    
       - name: list file listing in Release directory
