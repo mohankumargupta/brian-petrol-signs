@@ -49,7 +49,6 @@ jobs:
 
   compile-d1mini-code:
     runs-on: ubuntu-latest
-    needs: compile-pico-code
     steps:
       - name: Check out repository code
         uses: actions/checkout@v2
