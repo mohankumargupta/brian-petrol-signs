@@ -118,8 +118,14 @@ jobs:
           name: d1mini-binary
           path: ~/Release/d1mini.bin
 
-      - name: zip source code
-        run: "cd ${{github.workspace}}/code; zip -rv ~/Release/source.zip ." 
+      - name: Archive Release
+        uses: thedoctor0/zip-release@master
+        with:
+          type: 'zip'
+          filename: 'release.zip'
+          path: ${{github.workspace}}/code
+          directory: "~/Release"
+          exclusions: '*.git* /*node_modules/* .editorconfig'
 
       - name: Display structure of downloaded files
         run: "ls ~/Release"
@@ -127,7 +133,7 @@ jobs:
       - name: Create Release
         uses: ncipollo/release-action@v1
         with:
-          artifacts: "~/Release/*.bin,~/Release/*.uf2,~/Release/*.zip"
+          artifacts: "~/Release/d1mini.bin,~/Release/pico.uf2,~/Release/release.zip"
           body: "Exciting Release"
           tag: ${{github.event.inputs.releasename}}
           commit: "main"
