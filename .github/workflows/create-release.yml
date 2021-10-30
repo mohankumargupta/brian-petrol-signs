@@ -124,7 +124,7 @@ jobs:
           type: 'zip'
           filename: 'release.zip'
           path: ${{github.workspace}}/code
-          directory: "~/Release"
+          directory: /home/runner/Release"
           exclusions: '*.git* /*node_modules/* .editorconfig'
 
       - name: Display structure of downloaded files
