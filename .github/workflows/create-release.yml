@@ -92,6 +92,12 @@ jobs:
         run: "ls  ${{ github.workspace }}/code/d1mini"    
       - name: list file listing in Release directory
         run: "ls -R ~/d1mini"
+      - name: Upload d1mini binary as workflow artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: d1mini-binary
+          path: ~/d1mini/d1mini.bin          
+          retention-days: 1        
         
       
 
