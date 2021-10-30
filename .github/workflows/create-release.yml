@@ -104,12 +104,18 @@ jobs:
       - compile-pico-code
       - compile-d1mini-code
     steps:
-      - name: Download artifacts
+      - name: Download pico binary
         uses: actions/download-artifact@v2
         with:
           name: pico-binary
           path: ~/Release/pico.uf2
-          
+
+      - name: Download d1mini binary
+        uses: actions/download-artifact@v2
+        with:
+          name: d1mini-binary
+          path: ~/Release/d1mini.bin
+
       - name: Display structure of downloaded files
         run: "ls ~/Release"
 
