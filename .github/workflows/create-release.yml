@@ -42,6 +42,7 @@ jobs:
         run: "ls -R ~/pico"
       - uses: actions/upload-artifact@v2
         with:
+          name: pico-binary
           path: ~/pico/pico.uf2
           retention-days: 1
 
