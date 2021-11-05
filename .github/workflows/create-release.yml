@@ -5,6 +5,9 @@ on:
       releasename:
         description: Release Version
         required: true
+      changes:
+        description: Changes
+        required: true
 jobs:    
   compile-pico-code:
     runs-on: ubuntu-latest
