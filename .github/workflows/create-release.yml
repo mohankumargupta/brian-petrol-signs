@@ -145,7 +145,7 @@ jobs:
         uses: ncipollo/release-action@v1
         with:
           artifacts: "~/Release/d1mini.bin/d1mini.bin,~/Release/pico.uf2/pico.uf2,~/Release/*.zip"
-          body: "Exciting Release"
+          body: ${{github.event.inputs.changes}}
           tag: ${{github.event.inputs.releasename}}
           commit: "main"
           token: ${{ secrets.GITHUB_TOKEN }}
