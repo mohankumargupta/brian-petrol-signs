@@ -6,7 +6,7 @@ on:
         description: Release Version
         required: true
       changes:
-        description: Changes
+        description: Changes(markdown/html)
         required: true
 jobs:    
   compile-pico-code:
