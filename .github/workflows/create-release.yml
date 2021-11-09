@@ -153,7 +153,7 @@ jobs:
         run: "cd ~/Release/all-in-one-easy-install/d1mini/espflasher;curl -o ESPHome-Flasher-1.4.0-Windows-x32.exe https://github.com/esphome/esphome-flasher/releases/download/1.4.0/ESPHome-Flasher-1.4.0-Windows-x86.exe"      
       
       - name: Create all-in-one zip 
-        run: "zip -rv ~/Release/all-in-one.zip Release/all-in-one-easy-install.zip/"
+        run: "zip -rv ~/Release/all-in-one.zip Release/all-in-one-easy-install/"
                       
       - name: Display structure of downloaded files
         run: "ls -R ~/Release"
