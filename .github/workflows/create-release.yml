@@ -147,10 +147,10 @@ jobs:
         run: "wget -O ~/Release/all-in-one-easy-install/d1mini/windows_driver/windows_driver.zip  https://github.com/wemos/ch340_driver/raw/master/CH341SER_WIN_3.5.ZIP; cd ~/Release/all-in-one-easy-install/d1mini/windows_driver; unzip windows_driver; rm windows_driver.zip; cd"
       
       - name: get esp flasher 64-bit
-        run: "curl --output-dir ~/Release/all-in-one-easy-install/d1mini/espflasher -o ESPHome-Flasher-1.4.0-Windows-x64.exe https://github.com/esphome/esphome-flasher/releases/download/1.4.0/ESPHome-Flasher-1.4.0-Windows-x64.exe"
+        run: "cd ~/Release/all-in-one-easy-install/d1mini/espflasher;curl -o ESPHome-Flasher-1.4.0-Windows-x64.exe https://github.com/esphome/esphome-flasher/releases/download/1.4.0/ESPHome-Flasher-1.4.0-Windows-x64.exe"
       
       - name: get esp flasher 632-bit
-        run: "curl --output-dir ~/Release/all-in-one-easy-install/d1mini/espflasher -o ESPHome-Flasher-1.4.0-Windows-x64.exe https://github.com/esphome/esphome-flasher/releases/download/1.4.0/ESPHome-Flasher-1.4.0-Windows-x86.exe"      
+        run: "cd ~/Release/all-in-one-easy-install/d1mini/espflasher;curl -o ESPHome-Flasher-1.4.0-Windows-x64.exe https://github.com/esphome/esphome-flasher/releases/download/1.4.0/ESPHome-Flasher-1.4.0-Windows-x86.exe"      
       
       - name: Display structure of downloaded files
         run: "ls -R ~/Release"
