@@ -155,9 +155,9 @@ jobs:
       - name: Create zip 
         uses: papeloto/action-zip@v1
         with:
-          files: ~/Release/all-in-one-easy-install/
+          files: /home/runner/Release/all-in-one-easy-install/
           recursive: true
-          dest: ~/Release/all-in-one-easy-install.zip      
+          dest: /home/runner/Release/all-in-one-easy-install.zip      
       
       - name: Display structure of downloaded files
         run: "ls -R ~/Release"
