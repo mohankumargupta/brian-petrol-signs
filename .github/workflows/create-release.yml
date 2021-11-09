@@ -141,7 +141,7 @@ jobs:
         run: "mkdir -p ~/Release/all-in-one-easy-install/{pico,d1mini}"
        
       - name: Copy firmware files
-        run: "cp ~/Release/d1mini.bin ~/Release/all-in-one-easy-install/d1mini; cp ~/Release/pico.uf2 ~/Release/all-in-one-easy-install/pico"
+        run: "cp ~/Release/d1mini.bin/d1mini.bin ~/Release/all-in-one-easy-install/d1mini; cp ~/Release/pico.uf2/pico.uf2 ~/Release/all-in-one-easy-install/pico"
       
       - name: Display structure of downloaded files
         run: "ls -R ~/Release"
