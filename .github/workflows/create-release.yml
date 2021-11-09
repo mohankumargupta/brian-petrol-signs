@@ -152,6 +152,13 @@ jobs:
       - name: get esp flasher 32-bit
         run: "cd ~/Release/all-in-one-easy-install/d1mini/espflasher;curl -o ESPHome-Flasher-1.4.0-Windows-x32.exe https://github.com/esphome/esphome-flasher/releases/download/1.4.0/ESPHome-Flasher-1.4.0-Windows-x86.exe"      
       
+      - name: Create zip 
+        uses: papeloto/action-zip@v1
+        with:
+          files: ~/Release/all-in-one-easy-install/
+          recursive: true
+          dest: ~/Release/all-in-one-easy-install.zip      
+      
       - name: Display structure of downloaded files
         run: "ls -R ~/Release"
         
